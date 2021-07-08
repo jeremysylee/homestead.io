@@ -1,6 +1,14 @@
 const models = require('../models');
 
 const controllers = {
+  fetchCurrentBid: (req, res) => {
+    const homeId = req.params.id;
+    models.fetchCurrentBid((err, data) => {
+      if (err) { res.status(400).send(err); }
+      res.status(200).send(data.toString());
+    }, homeId);
+  },
+
   getHome: (req, res) => {
     const homeId = req.params.id;
     models.getHome((err, data) => {

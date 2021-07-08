@@ -1,15 +1,19 @@
 import React from 'react';
 
 const BidInput = () => {
+  const placeholder = () => {
+    console.log('7');
+  };
+
+  placeholder();
 
   return (
-    <div>
+    <form>
       <input type='text'></input>
       <button>Place bid</button>
-    </div>
+    </form>
 
   );
-}
-
+};
 
 export default BidInput;

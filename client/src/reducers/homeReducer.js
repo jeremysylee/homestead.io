@@ -1,4 +1,4 @@
-const initialState = { home: { photos: [] } };
+const initialState = { home: { photos: [], id: 1, sqft: 0 } };
 
 const defaultReducer = (state = initialState, action) => {
   switch (action.type) {
