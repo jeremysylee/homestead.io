@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { Container } from 'react-bootstrap';
 
 import BidTable from './BidTable.jsx';
+import BidInput from './BidInput.jsx';
 
 const Information = () => {
   const home = useSelector((store) => store.homeReducer.home);
@@ -16,6 +17,7 @@ const Information = () => {
       <h2>$4,250,000</h2> <span>{home.bedrooms} bd | {home.bathrooms} ba | {home.sqft} sqft</span>
       <p>{home.street} {home.unit} {home.city}, {home.state} {home.zip}</p>
       <BidTable />
+      <BidInput />
     </Container>
   );
 };

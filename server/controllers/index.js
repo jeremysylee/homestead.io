@@ -8,6 +8,14 @@ const controllers = {
       res.status(200).send(data);
     }, homeId);
   },
+
+  getBids: (req, res) => {
+    const homeId = req.params.id;
+    models.getBids((err, data) => {
+      if (err) { res.status(400).send(err); }
+      res.status(200).send(data);
+    }, homeId);
+  },
 };
 
 module.exports = controllers;

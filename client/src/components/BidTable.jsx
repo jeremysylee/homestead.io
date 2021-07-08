@@ -8,11 +8,10 @@ const BidTable = () => {
     <div>
       <p>Bid History</p>
       {bids.map((bid, i) => (
-        <ul key={i}>{bid.max_bid}</ul>
+        <ul key={i}>${bid.max_bid.toLocaleString()}</ul>
       ))}
     </div>
-  )
-}
-
+  );
+};
 
 export default BidTable;

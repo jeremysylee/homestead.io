@@ -2,7 +2,6 @@ DROP TABLE IF EXISTS photos CASCADE;
 DROP TABLE IF EXISTS address CASCADE;
 DROP TABLE IF EXISTS bids CASCADE;
 DROP TABLE IF EXISTS bidder CASCADE;
-DROP TABLE IF EXISTS bid_table CASCADE;
 DROP TABLE IF EXISTS homes;
 
 CREATE TABLE homes (
@@ -10,6 +9,10 @@ CREATE TABLE homes (
   bedrooms INTEGER,
   bathrooms INTEGER,
   sqft INTEGER,
+  start_time DATE,
+  end_time DATE,
+  base_price INTEGER,
+  current_bid INTEGER,
   PRIMARY KEY(id)
 );
 
@@ -39,29 +42,29 @@ CREATE TABLE address (
         ON UPDATE CASCADE
 );
 
-CREATE TABLE bid_table (
+-- CREATE TABLE bid_table (
+--   id SERIAL,
+--   home_id INTEGER,
+--   start_time DATE,
+--   end_time DATE,
+--   base_price INTEGER,
+--   current_bid INTEGER,
+--   PRIMARY KEY(id),
+--     CONSTRAINT fk_homes
+--       FOREIGN KEY (home_id)
+--         REFERENCES homes(id)
+--         ON UPDATE CASCADE
+-- );
+
+CREATE TABLE bids (
   id SERIAL,
   home_id INTEGER,
-  start_time DATE,
-  end_time DATE,
-  base_price INTEGER,
-  current_bid INTEGER,
+  max_bid INTEGER,
+  bidder_id INTEGER,
   PRIMARY KEY(id),
     CONSTRAINT fk_homes
       FOREIGN KEY (home_id)
         REFERENCES homes(id)
-        ON UPDATE CASCADE
-);
-
-CREATE TABLE bids (
-  id SERIAL,
-  bid_table_id INTEGER,
-  max_bid INTEGER,
-  bidder_id INTEGER,
-  PRIMARY KEY(id),
-    CONSTRAINT fk_bid_table
-      FOREIGN KEY (bid_table_id)
-        REFERENCES bid_table(id)
         ON UPDATE CASCADE
 );
 
@@ -73,7 +76,7 @@ CREATE TABLE bidder (
 
 
 INSERT INTO homes VALUES (
-  default, 5, 6.5, 10500
+  default, 5, 6.5, 10500, date '2021-07-11', date '2021-07-30', 4250000, 1100000
 );
 
 INSERT INTO photos VALUES
@@ -87,9 +90,6 @@ INSERT INTO photos VALUES
 
 INSERT INTO address VALUES
   (default, '31842 W Sea Level Dr', null, 'Malibu', 'CA', 90265, 1);
-
-INSERT INTO bid_table VALUES
-  (default, 1, date '2021-07-11', date '2021-07-30', 4250000, 1100000);
 
 INSERT INTO bids VALUES
   (default, 1, 4500000, 1),

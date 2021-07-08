@@ -10,4 +10,12 @@ module.exports = {
       callback(null, shapedData);
     });
   },
+
+  getBids: (callback, homeId) => {
+    const queryString = `SELECT * FROM bids WHERE home_id = ${homeId} ORDER BY max_bid DESC`;
+    db.query(queryString, (err, res) => {
+      if (err) { callback(err); }
+      callback(null, res.rows);
+    });
+  },
 };
