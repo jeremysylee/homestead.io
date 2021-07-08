@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
@@ -7,9 +7,13 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Dashboard from './Dashboard.jsx';
 import Gallery from './Gallery.jsx';
 import Information from './Information.jsx';
+import Login from './Login.jsx';
 
 const App = () => {
   const dispatch = useDispatch();
+
+  // temporary token storage
+  const [token, setToken] = useState();
 
   const getBidTable = () => {
     axios.get('/api/homes/1/bids')
@@ -38,6 +42,10 @@ const App = () => {
         console.log(err);
       });
   });
+
+  if (!token) {
+    return <Login setToken={setToken} />;
+  }
 
   return (
     <div>
