@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS photos CASCADE;
 DROP TABLE IF EXISTS address CASCADE;
+DROP TABLE IF EXISTS sessions CASCADE;
 DROP TABLE IF EXISTS bids CASCADE;
-DROP TABLE IF EXISTS bidder CASCADE;
+DROP TABLE IF EXISTS users CASCADE;
 DROP TABLE IF EXISTS homes;
 
 CREATE TABLE homes (
@@ -56,22 +57,39 @@ CREATE TABLE address (
 --         ON UPDATE CASCADE
 -- );
 
+CREATE TABLE users (
+  id SERIAL,
+  username VARCHAR(40) UNIQUE,
+  password VARCHAR(64),
+  salt VARCHAR(64),
+  PRIMARY KEY(id)
+);
+
 CREATE TABLE bids (
   id SERIAL,
   home_id INTEGER,
   max_bid INTEGER,
-  bidder_id INTEGER,
+  user_id INTEGER,
   PRIMARY KEY(id),
     CONSTRAINT fk_homes
       FOREIGN KEY (home_id)
         REFERENCES homes(id)
+        ON UPDATE CASCADE,
+    CONSTRAINT fk_user
+      FOREIGN KEY (user_id)
+        REFERENCES users(id)
         ON UPDATE CASCADE
 );
 
-CREATE TABLE bidder (
+CREATE TABLE sessions (
   id SERIAL,
-  name VARCHAR(20),
-  PRIMARY KEY(id)
+  hash VARCHAR(64),
+  user_id INT,
+  PRIMARY KEY(id),
+    CONSTRAINT fk_user
+      FOREIGN KEY (user_id)
+        REFERENCES users(id)
+        ON UPDATE CASCADE
 );
 
 
@@ -90,6 +108,12 @@ INSERT INTO photos VALUES
 
 INSERT INTO address VALUES
   (default, '31842 W Sea Level Dr', null, 'Malibu', 'CA', 90265, 1);
+
+INSERT INTO users VALUES
+  (default, 'jeremysylee', 'potato', '3fadf23rn2r'),
+  (default, 'jimmyg', 'lemon', 'fsf34s3fsdf'),
+  (default, 'ag0sto', 'jello', 'as34fasdf'),
+  (default, 'migbuen', 'codgod', 'asf34as3f');
 
 INSERT INTO bids VALUES
   (default, 1, 4500000, 1),

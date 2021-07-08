@@ -1,6 +1,13 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 const BidInput = () => {
+  const history = useHistory();
+
+  const handleLogin = () => {
+    history.push('/dashboard');
+  };
+
   const placeholder = () => {
     console.log('7');
   };
@@ -10,7 +17,7 @@ const BidInput = () => {
   return (
     <form>
       <input type='text'></input>
-      <button>Place bid</button>
+      <button onClick={handleLogin}>Place bid</button>
     </form>
 
   );

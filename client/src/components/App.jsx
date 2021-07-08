@@ -2,6 +2,9 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+import Dashboard from './Dashboard.jsx';
 import Gallery from './Gallery.jsx';
 import Information from './Information.jsx';
 
@@ -38,18 +41,24 @@ const App = () => {
 
   return (
     <div>
-      <Container>
-        <Row>
-          <Col>
-            <Gallery />
-          </Col>
-          <Col>
-            <Information />
-          </Col>
-        </Row>
-      </Container>
-      <div> space
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <Container>
+              <Row>
+                <Col>
+                  <Gallery />
+                </Col>
+                <Col>
+                  <Information />
+                </Col>
+              </Row>
+            </Container>
+          </Route>
+          <Route path="/dashboard" component={Dashboard} />
+        </Switch>
+      </BrowserRouter>
+
     </div>
   );
 };
