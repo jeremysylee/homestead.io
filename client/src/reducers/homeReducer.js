@@ -1,9 +1,9 @@
-const initialState = {};
+const initialState = { home: { photos: [] } };
 
 const defaultReducer = (state = initialState, action) => {
   switch (action.type) {
-    case 'DEFAULT':
-      return { state: action.state };
+    case 'SET_HOME':
+      return { home: action.home };
     default:
       return state;
   }
