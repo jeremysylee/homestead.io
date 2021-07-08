@@ -9,7 +9,8 @@
     "build:dev": "webpack --mode=development",
     "build:prod": "webpack --mode=production --node-env=production",
     "watch": "webpack --watch",
-    "start": "nodemon server"
+    "start": "nodemon server",
+    "seed": "psql postgres -d homestead -f database/schema.sql"
   },
   "repository": {
     "type": "git",
@@ -43,7 +44,9 @@
   "dependencies": {
     "express": "^4.17.1",
     "morgan": "^1.10.0",
+    "node-postgres": "^0.6.2",
     "nodemon": "^2.0.9",
+    "pg": "^8.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.4"
