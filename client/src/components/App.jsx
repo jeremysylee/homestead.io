@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Container } from 'react-bootstrap';
+import Gallery from './Gallery.jsx';
+
 
 const App = () => {
   const test = () => {
@@ -6,9 +9,12 @@ const App = () => {
   };
 
   return (
-    <div>
-      <h1>Homestead</h1>
-    </div>
+    <Container>
+      <div>
+        <h1>Homestead</h1>
+      </div>
+      <Gallery />
+    </Container>
   );
 };
 
