@@ -120,5 +120,5 @@ INSERT INTO users VALUES
 INSERT INTO bids VALUES
   -- (default, 1, 4500000, 5),
   -- (default, 1, 4600000, 2),
-  (default, 1, 600000, 3),
+  (default, 1, 525000, 3),
   (default, 1, 500000, 4);

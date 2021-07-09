@@ -7,22 +7,21 @@ const BidTable = () => {
   const bids = useSelector((store) => store.bidsReducer.bids);
   const currentBid = useSelector((store) => store.currentBidReducer.currentBid);
 
-  const getBidTable = () => {
-    axios.get('/api/homes/1/bids')
-      .then((res) => {
-        dispatch({
-          type: 'SET_BIDS',
-          bids: res.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
   useEffect(() => {
+    const getBidTable = () => {
+      axios.get('/api/homes/1/bids')
+        .then((res) => {
+          dispatch({
+            type: 'SET_BIDS',
+            bids: res.data,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
     getBidTable();
-  }, [currentBid]);
+  }, [currentBid, dispatch]);
 
   return (
     <div style={{ fontWeight: 'lighter', fontSize: '14px', marginBottom: '24px' }}>

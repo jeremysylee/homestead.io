@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Alert } from 'react-bootstrap';
 import axios from 'axios';
-import moment from 'moment';
+// import moment from 'moment';
 
 import BidTable from './BidTable.jsx';
 import BidInput from './BidInput.jsx';
@@ -12,8 +12,9 @@ const Information = () => {
   const home = useSelector((store) => store.homeReducer.home);
   const currentBid = useSelector((store) => store.currentBidReducer.currentBid);
   const userId = useSelector((store) => store.userReducer.userId);
-  const winning = useSelector((store) => store.winningReducer.winning);
-  const [time, setTime] = useState({ mins: 0 });
+  const status = useSelector((store) => store.winningReducer.status);
+  const bid = useSelector((store) => store.winningReducer.bid);
+  // const [time, setTime] = useState({ mins: 0 });
 
   const bidChecker = () => {
     setInterval(() => {
@@ -24,7 +25,7 @@ const Information = () => {
             currentBid: response.data,
           });
         });
-    }, 1000);
+    }, 500);
   };
 
   // const countdown = () => {
@@ -40,7 +41,8 @@ const Information = () => {
         .then((response) => {
           dispatch({
             type: 'SET_WINNING',
-            winning: response.data,
+            status: response.data.status,
+            bid: response.data.bid,
           });
         });
     }, 1000);
@@ -66,11 +68,11 @@ const Information = () => {
         <h4 style={{ fontWeight: 'bolder', color: '#D65454' }}>Homestead</h4>
       </div>
       <hr></hr>
-      {winning === true && <Alert variant={'success'}>
-        <p>You&apos;re the highest bidder!</p>
+      {status === true && <Alert variant={'success'}>
+        <p>Your bid of ${bid.toLocaleString()} is the highest bid!</p>
       </Alert>}
-      {winning === false && <Alert variant={'danger'}>
-        <p>You&apos;ve been outbid.</p>
+      {status === false && <Alert variant={'danger'}>
+        <p>Your max bid of ${bid.toLocaleString()} has been outbid. Try increasing your max bid.</p>
       </Alert>}
       <span style={{ fontWeight: 'lighter', fontSize: '14px' }}>Current Bid</span>
       <div style={{ alignItems: 'baseline' }}>
@@ -88,7 +90,7 @@ const Information = () => {
       <div style={{ fontSize: '14px', marginBottom: '5px' }}>
         <b>Time Left:&nbsp;&nbsp;</b>
         <span>
-          <b>{time.day}</b><span style={{ fontWeight: 'lighter' }}> days &nbsp;</span>
+          <b>2</b><span style={{ fontWeight: 'lighter' }}> days &nbsp;</span>
           <b>14</b><span style={{ fontWeight: 'lighter' }}> hours &nbsp;</span>
           <b>3</b> <span style={{ fontWeight: 'lighter' }}> mins &nbsp;</span>
         </span>
