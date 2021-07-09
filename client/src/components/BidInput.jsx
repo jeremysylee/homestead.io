@@ -30,8 +30,6 @@ const BidInput = () => {
     }
   };
 
-  console.log(bid);
-
   return (
     <form>
         {showAlert && <Alert variant="danger" style={{ width: '428px' }} onClose={() => setShowAlert(false)} dismissible>

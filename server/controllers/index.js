@@ -43,6 +43,15 @@ const controllers = {
       res.status(200).send('bid added');
     }, homeId, userId, bid);
   },
+
+  checkForWin: (req, res) => {
+    const homeId = req.params.id;
+    const { userId } = req.query;
+    models.checkForWin((err, data) => {
+      if (err) { res.status(400).send(err); }
+      res.status(200).send(data);
+    }, homeId, userId);
+  },
 };
 
 module.exports = controllers;

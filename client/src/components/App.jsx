@@ -72,14 +72,14 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path="/">
-            <Container>
-              <Row>
-                <Col>
+            <Container style={{ justifyContent: 'center' }}>
+              <Row style={{ justifyContent: 'center', flexWrap: 'nowrap' }}>
+                {/* <Col> */}
                   <Gallery />
-                </Col>
-                <Col>
+                {/* </Col> */}
+                {/* <Col> */}
                   <Information />
-                </Col>
+                {/* </Col> */}
               </Row>
             </Container>
           </Route>

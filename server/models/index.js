@@ -47,4 +47,16 @@ module.exports = {
       callback(null);
     });
   },
+
+  checkForWin: (callback, homeId, userId) => {
+    const queryString = `SELECT * FROM bids WHERE home_id = ${homeId} ORDER BY max_bid DESC`;
+    db.query(queryString, (err, res) => {
+      if (err) { callback(err); }
+      if (res.rows[0].user_id.toString() === userId) {
+        callback(null, true);
+      } else {
+        callback(null, false);
+      }
+    });
+  },
 };

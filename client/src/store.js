@@ -10,6 +10,7 @@ import homeReducer from './reducers/homeReducer';
 import bidsReducer from './reducers/bidsReducer';
 import currentBidReducer from './reducers/currentBidReducer';
 import userReducer from './reducers/userReducer';
+import winningReducer from './reducers/winningReducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -19,6 +20,7 @@ const store = createStore(
     bidsReducer,
     currentBidReducer,
     userReducer,
+    winningReducer,
   }),
   composeEnhancers(applyMiddleware(thunk)),
 );

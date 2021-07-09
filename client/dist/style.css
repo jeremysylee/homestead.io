@@ -16,3 +16,7 @@ input {
   height: 43px;
   width: 250px;
 }
+
+img {
+  object-fit: contain;
+}
