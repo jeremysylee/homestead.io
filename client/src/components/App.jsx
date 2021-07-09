@@ -8,12 +8,12 @@ import Dashboard from './Dashboard.jsx';
 import Gallery from './Gallery.jsx';
 import Information from './Information.jsx';
 import Login from './Login.jsx';
+import useToken from './useToken';
 
 const App = () => {
   const dispatch = useDispatch();
 
-  // temporary token storage
-  const [token, setToken] = useState();
+  const { token, setToken } = useToken();
 
   const getBidTable = () => {
     axios.get('/api/homes/1/bids')

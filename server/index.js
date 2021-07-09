@@ -12,6 +12,12 @@ app.use(morgan('dev'));
 app.use(express.static(path.join(__dirname, '../client/dist')));
 app.use('/api', router);
 
+app.use('/login', (req, res) => {
+  res.send({
+    token: 'test123',
+  });
+});
+
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
