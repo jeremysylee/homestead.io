@@ -95,7 +95,7 @@ CREATE TABLE sessions (
 
 
 INSERT INTO homes VALUES (
-  default, 5, 6.5, 10500, date '2021-07-11', date '2021-07-30', 4250000, 1100000
+  default, 5, 6.5, 10500, date '2021-07-11', date '2021-07-30', 500000, 500000
 );
 
 INSERT INTO photos VALUES
@@ -118,7 +118,7 @@ INSERT INTO users VALUES
   (default, 'potato', 'womobo', 'asf3;fj3f', 'safe3f3s');
 
 INSERT INTO bids VALUES
-  (default, 1, 4500000, 5),
-  (default, 1, 4600000, 2),
-  (default, 1, 5000000, 3),
-  (default, 1, 5750000, 4);
+  -- (default, 1, 4500000, 5),
+  -- (default, 1, 4600000, 2),
+  (default, 1, 600000, 3),
+  (default, 1, 500000, 4);

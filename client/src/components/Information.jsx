@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Container, Alert } from 'react-bootstrap';
 import axios from 'axios';
+import moment from 'moment';
 
 import BidTable from './BidTable.jsx';
 import BidInput from './BidInput.jsx';
@@ -12,6 +13,7 @@ const Information = () => {
   const currentBid = useSelector((store) => store.currentBidReducer.currentBid);
   const userId = useSelector((store) => store.userReducer.userId);
   const winning = useSelector((store) => store.winningReducer.winning);
+  const [time, setTime] = useState({ mins: 0 });
 
   const bidChecker = () => {
     setInterval(() => {
@@ -24,6 +26,13 @@ const Information = () => {
         });
     }, 1000);
   };
+
+  // const countdown = () => {
+  //   const day = moment(home.end_time).fromNow();
+  //   const hour = moment().endOf('day').fromNow();
+  //   const min = moment().endOf('hour').fromNow();
+  //   setTime({ day, hour, min });
+  // };
 
   const winningChecker = () => {
     setInterval(() => {
@@ -41,6 +50,15 @@ const Information = () => {
     bidChecker();
     winningChecker();
   });
+
+  // setInterval(() => {
+  //   const endTime = home.end_time;
+  //   const now = new Date().getTime();
+  //   const distance = endTime - now;
+  //   console.log(endTime);
+
+  //   setTime({ days: Math.floor(distance / (1000 * 60 * 60 * 24)) });
+  // });
 
   return (
     <Container>
@@ -70,7 +88,7 @@ const Information = () => {
       <div style={{ fontSize: '14px', marginBottom: '5px' }}>
         <b>Time Left:&nbsp;&nbsp;</b>
         <span>
-          <b>2</b><span style={{ fontWeight: 'lighter' }}> days &nbsp;</span>
+          <b>{time.day}</b><span style={{ fontWeight: 'lighter' }}> days &nbsp;</span>
           <b>14</b><span style={{ fontWeight: 'lighter' }}> hours &nbsp;</span>
           <b>3</b> <span style={{ fontWeight: 'lighter' }}> mins &nbsp;</span>
         </span>

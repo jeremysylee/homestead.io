@@ -52,10 +52,11 @@ module.exports = {
     const queryString = [`SELECT * FROM bids WHERE home_id = ${homeId} ORDER BY max_bid DESC`, `SELECT * from BIDS WHERE user_id = '${userId}'`];
     db.query(queryString.join(';'), (err, res) => {
       if (err) { callback(err); }
-      const checkForBidder = res[1].rows[0] || { id: false };
-      if (res[0].rows[0].user_id.toString() === userId) {
+      const data0 = res[0].rows[0] || { user_id: 0 };
+      const data1 = res[1].rows[0] || { id: false };
+      if (data0.user_id.toString() === userId) {
         callback(null, true);
-      } else if (!checkForBidder.id) {
+      } else if (!data1.id) {
         callback(null, 'noBid');
       } else {
         callback(null, false);

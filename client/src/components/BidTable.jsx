@@ -1,8 +1,28 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import axios from 'axios';
 
 const BidTable = () => {
+  const dispatch = useDispatch();
   const bids = useSelector((store) => store.bidsReducer.bids);
+  const currentBid = useSelector((store) => store.currentBidReducer.currentBid);
+
+  const getBidTable = () => {
+    axios.get('/api/homes/1/bids')
+      .then((res) => {
+        dispatch({
+          type: 'SET_BIDS',
+          bids: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    getBidTable();
+  }, [currentBid]);
 
   return (
     <div style={{ fontWeight: 'lighter', fontSize: '14px', marginBottom: '24px' }}>

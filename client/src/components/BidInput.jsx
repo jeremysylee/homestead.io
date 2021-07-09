@@ -21,6 +21,7 @@ const BidInput = () => {
       axios.put('/api/homes/1/bid', null, { params: { bid, userId } })
         .then((res) => {
           console.log(res);
+          setShowAlert(false);
         })
         .catch((err) => {
           console.log(err);

@@ -35,23 +35,23 @@ const App = () => {
     });
   };
 
-  const getBidTable = () => {
-    axios.get('/api/homes/1/bids')
-      .then((res) => {
-        dispatch({
-          type: 'SET_BIDS',
-          bids: res.data,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const getBidTable = () => {
+  //   axios.get('/api/homes/1/bids')
+  //     .then((res) => {
+  //       dispatch({
+  //         type: 'SET_BIDS',
+  //         bids: res.data,
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   useEffect(() => {
+    // getBidTable();
     axios.get('/api/homes/1')
       .then((res) => {
-        getBidTable();
         dispatch({
           type: 'SET_HOME',
           home: res.data,
