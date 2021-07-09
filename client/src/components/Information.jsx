@@ -19,7 +19,6 @@ const Information = () => {
             type: 'CURRENT_BID',
             currentBid: response.data,
           });
-          console.log('checked bid');
         });
     }, 1000);
   };

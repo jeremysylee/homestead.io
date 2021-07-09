@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 // import { useHistory } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { Alert } from 'react-bootstrap';
 
 const BidInput = () => {
   // const history = useHistory();
   const currentBid = useSelector((store) => store.currentBidReducer.currentBid);
   const userId = useSelector((store) => store.userReducer.userId);
   const [bid, setBid] = useState();
+  const [showAlert, setShowAlert] = useState(false);
 
   // const handleLogin = () => {
   //   history.push('/dashboard');
@@ -23,6 +25,8 @@ const BidInput = () => {
         .catch((err) => {
           console.log(err);
         });
+    } else {
+      setShowAlert(true);
     }
   };
 
@@ -30,7 +34,10 @@ const BidInput = () => {
 
   return (
     <form>
-      <input type='text' onChange={(e) => setBid(e.target.value)}></input>
+      {showAlert && <Alert variant="danger" onClose={() => setShowAlert(false)} dismissible>
+        <p>Place a bid greater than ${currentBid.toLocaleString()}</p>
+      </Alert>}
+      <input type='number' onChange={(e) => setBid(e.target.value)}></input>
       <button onClick={handleBid}>Place bid</button>
     </form>
 

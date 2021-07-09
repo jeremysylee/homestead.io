@@ -2,6 +2,16 @@ const db = require('../../database/index');
 
 module.exports = {
 
+  login: (callback, credentials) => {
+    const queryString = `SELECT * FROM users WHERE username = '${credentials.username}'`;
+    db.query(queryString, (err, res) => {
+      if (err) { callback(err); }
+      const data = res.rows[0];
+      const shapedData = { userToken: data.token, userId: data.id };
+      callback(null, shapedData);
+    });
+  },
+
   fetchCurrentBid: (callback, homeId) => {
     const queryString = `SELECT * FROM bids WHERE home_id = '${homeId}' ORDER BY max_bid DESC`;
     db.query(queryString, (err, res) => {
@@ -21,7 +31,7 @@ module.exports = {
   },
 
   getBids: (callback, homeId) => {
-    const queryString = `SELECT * FROM bids WHERE home_id = ${homeId} ORDER BY max_bid DESC`;
+    const queryString = `SELECT * FROM bids WHERE home_id = ${homeId} ORDER BY max_bid DESC OFFSET 1`;
     db.query(queryString, (err, res) => {
       if (err) { callback(err); }
       callback(null, res.rows);

@@ -52,7 +52,6 @@ const App = () => {
   useEffect(() => {
     axios.get('/api/homes/1')
       .then((res) => {
-        console.log(res.data);
         getBidTable();
         dispatch({
           type: 'SET_HOME',

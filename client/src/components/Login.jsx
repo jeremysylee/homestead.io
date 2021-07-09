@@ -8,9 +8,9 @@ const Login = ({ setTokenAndId }) => {
 
   const login = (credentials) => {
     const options = {
-      body: credentials,
+      credentials,
     };
-    axios.post('/login', options)
+    axios.post('/api/login', options)
       .then((response) => {
         setTokenAndId(response.data);
       })
@@ -45,7 +45,7 @@ const Login = ({ setTokenAndId }) => {
 };
 
 Login.propTypes = {
-  setToken: PropTypes.func.isRequired,
+  setTokenAndId: PropTypes.func.isRequired,
 };
 
 export default Login;

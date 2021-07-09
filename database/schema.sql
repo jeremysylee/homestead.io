@@ -62,6 +62,7 @@ CREATE TABLE users (
   username VARCHAR(40) UNIQUE,
   password VARCHAR(64),
   salt VARCHAR(64),
+  token VARCHAR(64),
   PRIMARY KEY(id)
 );
 
@@ -110,10 +111,10 @@ INSERT INTO address VALUES
   (default, '31842 W Sea Level Dr', null, 'Malibu', 'CA', 90265, 1);
 
 INSERT INTO users VALUES
-  (default, 'jeremysylee', 'potato', '3fadf23rn2r'),
-  (default, 'jimmyg', 'lemon', 'fsf34s3fsdf'),
-  (default, 'ag0sto', 'jello', 'as34fasdf'),
-  (default, 'migbuen', 'codgod', 'asf34as3f');
+  (default, 'jeremysylee', 'potato', '3fadf23rn2r', 'aefjisjdfa'),
+  (default, 'jimmyg', 'lemon', 'fsf34s3fsdf', 'sef32oif3'),
+  (default, 'ag0sto', 'jello', 'as34fasdf', 'af399f0jf'),
+  (default, 'migbuen', 'codgod', 'asf34as3f', 'seiaf32342');
 
 INSERT INTO bids VALUES
   (default, 1, 4500000, 1),

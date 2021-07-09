@@ -1,6 +1,15 @@
 const models = require('../models');
 
 const controllers = {
+
+  login: (req, res) => {
+    const { credentials } = req.body;
+    models.login((err, data) => {
+      if (err) { res.status(400).send(err); }
+      res.status(200).send(data);
+    }, credentials);
+  },
+
   fetchCurrentBid: (req, res) => {
     const homeId = req.params.id;
     models.fetchCurrentBid((err, data) => {
