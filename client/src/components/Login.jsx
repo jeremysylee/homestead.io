@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-const Login = ({ setToken }) => {
+const Login = ({ setTokenAndId }) => {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
 
@@ -12,7 +12,7 @@ const Login = ({ setToken }) => {
     };
     axios.post('/login', options)
       .then((response) => {
-        setToken(response.data);
+        setTokenAndId(response.data);
       })
       .catch((err) => {
         console.log(err);

@@ -69,7 +69,7 @@ CREATE TABLE bids (
   id SERIAL,
   home_id INTEGER,
   max_bid INTEGER,
-  user_id INTEGER,
+  user_id INTEGER UNIQUE,
   PRIMARY KEY(id),
     CONSTRAINT fk_homes
       FOREIGN KEY (home_id)
@@ -117,6 +117,6 @@ INSERT INTO users VALUES
 
 INSERT INTO bids VALUES
   (default, 1, 4500000, 1),
-  (default, 1, 4600000, 1),
-  (default, 1, 5000000, 1),
-  (default, 1, 5750000, 1);
+  (default, 1, 4600000, 2),
+  (default, 1, 5000000, 3),
+  (default, 1, 5750000, 4);

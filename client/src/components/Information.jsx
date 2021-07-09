@@ -12,14 +12,16 @@ const Information = () => {
   const currentBid = useSelector((store) => store.currentBidReducer.currentBid);
 
   const bidChecker = () => {
-    axios.get(`/api/homes/${home.id}/currentBid`)
-      .then((response) => {
-        dispatch({
-          type: 'CURRENT_BID',
-          currentBid: response.data,
+    setInterval(() => {
+      axios.get(`/api/homes/${home.id}/currentBid`)
+        .then((response) => {
+          dispatch({
+            type: 'CURRENT_BID',
+            currentBid: response.data,
+          });
+          console.log('checked bid');
         });
-        console.log('checked bid');
-      });
+    }, 1000);
   };
 
   useEffect(() => {

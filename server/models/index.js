@@ -27,4 +27,14 @@ module.exports = {
       callback(null, res.rows);
     });
   },
+
+  bid: (callback, homeId, userId, bid) => {
+    const queryString = `INSERT INTO bids VALUES (default, '${homeId}', ${bid}, ${userId})
+      ON CONFLICT (user_id)
+      DO UPDATE SET max_bid = ${bid}`;
+    db.query(queryString, (err) => {
+      if (err) { callback(err); }
+      callback(null);
+    });
+  },
 };
