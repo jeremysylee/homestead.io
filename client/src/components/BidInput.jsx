@@ -34,11 +34,17 @@ const BidInput = () => {
 
   return (
     <form>
-      {showAlert && <Alert variant="danger" onClose={() => setShowAlert(false)} dismissible>
-        <p>Place a bid greater than ${currentBid.toLocaleString()}</p>
-      </Alert>}
-      <input type='number' onChange={(e) => setBid(e.target.value)}></input>
-      <button onClick={handleBid}>Place bid</button>
+        {showAlert && <Alert variant="danger" style={{ width: '428px' }} onClose={() => setShowAlert(false)} dismissible>
+          <p>Place a bid greater than ${currentBid.toLocaleString()}</p>
+        </Alert>}
+      <div style={{ display: 'flex' }}>
+        <div style={{ marginRight: '8px' }}>
+          <input type='number' onChange={(e) => setBid(e.target.value)}></input>
+        </div>
+        <div>
+          <button onClick={handleBid}>Place bid</button>
+        </div>
+      </div>
     </form>
 
   );

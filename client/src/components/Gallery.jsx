@@ -6,10 +6,10 @@ const Gallery = () => {
   const home = useSelector((store) => store.homeReducer.home);
 
   return (
-      <div style={{ maxWidth: '50%' }}>
+      <div>
         {home.photos.map((photo, i) => (
           <ul key={i}>
-            <img src={photo.url} style={{ maxWidth: '100%' }} />
+            <img src={photo.url} style={{ marginBottom: '-12px', maxWidth: '100%' }} />
           </ul>
         ))}
       </div>

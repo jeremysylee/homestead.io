@@ -29,15 +29,37 @@ const Information = () => {
 
   return (
     <Container>
-      <div id='header'>
-        <h1>Homestead</h1>
+      <div id='header' style={{ marginTop: '20px' }}>
+        <h4 style={{ fontWeight: 'bolder', color: '#D65454' }}>Homestead</h4>
       </div>
-      <p>Current Bid</p>
-      <h2>${currentBid.toLocaleString()}</h2>
-      <span>{home.bedrooms} bd | {home.bathrooms} ba | {home.sqft.toLocaleString()} sqft</span>
-      <p>{home.street}, {home.unit} {home.city}, {home.state} {home.zip}</p>
+      <hr></hr>
+      <span style={{ fontWeight: 'lighter', fontSize: '14px' }}>Current Bid</span>
+      <div style={{ alignItems: 'baseline' }}>
+        <span style={{ fontWeight: 'bold', fontSize: '32px' }}>${currentBid.toLocaleString()}</span> &nbsp;&nbsp;&nbsp;&nbsp;
+        <span style={{ fontSize: '14px' }}>
+          <b>{home.bedrooms}</b><span style={{ fontWeight: 'lighter' }}> bd | </span>
+          <b>{home.bathrooms}</b><span style={{ fontWeight: 'lighter' }}> ba | </span>
+          <b>{home.sqft.toLocaleString()}</b><span style={{ fontWeight: 'lighter' }}> sqft  </span>
+        </span>
+      </div>
+      <p style={{
+        fontWeight: 'lighter', letterSpacing: '1.5px', marginTop: '3px', marginBottom: '24px',
+      }}>{home.street}, {home.unit} {home.city}, {home.state} {home.zip}</p>
       <BidTable />
+      <div style={{ fontSize: '14px', marginBottom: '5px' }}>
+        <b>Time Left:&nbsp;&nbsp;</b>
+        <span>
+          <b>2</b><span style={{ fontWeight: 'lighter' }}> days &nbsp;</span>
+          <b>14</b><span style={{ fontWeight: 'lighter' }}> hours &nbsp;</span>
+          <b>3</b> <span style={{ fontWeight: 'lighter' }}> mins &nbsp;</span>
+        </span>
+      </div>
       <BidInput />
+      <span style={{
+        fontWeight: 'lighter', fontSize: '13px', marginTop: '3px',
+      }}>Enter US ${(currentBid + 10000).toLocaleString()} or more</span>
+      <div style={{ height: '40px' }}></div>
+      <hr></hr>
     </Container>
   );
 };

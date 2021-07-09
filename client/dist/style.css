@@ -1,0 +1,18 @@
+body {
+  font-family: Roboto;
+}
+
+button {
+  background-color: #D65454;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border: none;
+  height: 43px;
+  width: 170px;
+}
+
+input {
+  height: 43px;
+  width: 250px;
+}
