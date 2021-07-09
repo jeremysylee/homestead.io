@@ -1,4 +1,4 @@
-const initialState = { winning: false };
+const initialState = { winning: 'nobid' };
 
 const winningReducer = (state = initialState, action) => {
   switch (action.type) {

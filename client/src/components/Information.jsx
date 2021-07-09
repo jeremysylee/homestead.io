@@ -51,7 +51,7 @@ const Information = () => {
       {winning === true && <Alert variant={'success'}>
         <p>You&apos;re the highest bidder!</p>
       </Alert>}
-      {!winning && <Alert variant={'danger'}>
+      {winning === false && <Alert variant={'danger'}>
         <p>You&apos;ve been outbid.</p>
       </Alert>}
       <span style={{ fontWeight: 'lighter', fontSize: '14px' }}>Current Bid</span>

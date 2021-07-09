@@ -114,10 +114,11 @@ INSERT INTO users VALUES
   (default, 'jeremysylee', 'potato', '3fadf23rn2r', 'aefjisjdfa'),
   (default, 'jimmyg', 'lemon', 'fsf34s3fsdf', 'sef32oif3'),
   (default, 'ag0sto', 'jello', 'as34fasdf', 'af399f0jf'),
-  (default, 'migbuen', 'codgod', 'asf34as3f', 'seiaf32342');
+  (default, 'migbuen', 'codgod', 'asf34as3f', 'seiaf32342'),
+  (default, 'potato', 'womobo', 'asf3;fj3f', 'safe3f3s');
 
 INSERT INTO bids VALUES
-  (default, 1, 4500000, 1),
+  (default, 1, 4500000, 5),
   (default, 1, 4600000, 2),
   (default, 1, 5000000, 3),
   (default, 1, 5750000, 4);

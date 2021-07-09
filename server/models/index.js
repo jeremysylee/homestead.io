@@ -49,11 +49,14 @@ module.exports = {
   },
 
   checkForWin: (callback, homeId, userId) => {
-    const queryString = `SELECT * FROM bids WHERE home_id = ${homeId} ORDER BY max_bid DESC`;
-    db.query(queryString, (err, res) => {
+    const queryString = [`SELECT * FROM bids WHERE home_id = ${homeId} ORDER BY max_bid DESC`, `SELECT * from BIDS WHERE user_id = '${userId}'`];
+    db.query(queryString.join(';'), (err, res) => {
       if (err) { callback(err); }
-      if (res.rows[0].user_id.toString() === userId) {
+      const checkForBidder = res[1].rows[0] || { id: false };
+      if (res[0].rows[0].user_id.toString() === userId) {
         callback(null, true);
+      } else if (!checkForBidder.id) {
+        callback(null, 'noBid');
       } else {
         callback(null, false);
       }
