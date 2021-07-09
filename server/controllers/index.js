@@ -5,7 +5,7 @@ const controllers = {
   login: (req, res) => {
     const { credentials } = req.body;
     models.login((err, data) => {
-      if (err) { res.status(400).send(err); }
+      if (err) { res.status(404).send(err); }
       res.status(200).send(data);
     }, credentials);
   },

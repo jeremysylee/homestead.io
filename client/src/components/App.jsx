@@ -13,7 +13,6 @@ const App = () => {
   const dispatch = useDispatch();
   const token = useSelector((store) => store.userReducer.userToken);
 
-  // const { token, setToken } = useToken();
   const getTokenAndId = () => {
     const tokenString = sessionStorage.getItem('token');
     const userToken = JSON.parse(tokenString);

@@ -6,7 +6,7 @@ module.exports = {
     const queryString = `SELECT * FROM users WHERE username = '${credentials.username}'`;
     db.query(queryString, (err, res) => {
       if (err) { callback(err); }
-      const data = res.rows[0];
+      const data = res.rows[0] || {};
       const shapedData = { userToken: data.token, userId: data.id };
       callback(null, shapedData);
     });

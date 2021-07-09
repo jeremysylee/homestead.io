@@ -12,7 +12,10 @@ const Login = ({ setTokenAndId }) => {
     };
     axios.post('/api/login', options)
       .then((response) => {
-        setTokenAndId(response.data);
+        if (response.data.userToken) {
+          console.log('conditional too friendly', response.data);
+          setTokenAndId(response.data);
+        }
       })
       .catch((err) => {
         console.log(err);
