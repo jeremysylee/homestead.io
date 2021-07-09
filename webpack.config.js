@@ -10,6 +10,7 @@ const config = {
   entry: './client/src/index.jsx',
   output: {
     path: path.resolve(__dirname, 'client/dist'),
+    publicPath: '/'
   },
   plugins: [
     // Add your plugins here
@@ -37,7 +38,10 @@ const config = {
         // Add your rules for custom modules here
         // Learn more about loaders from https://webpack.js.org/loaders/
     ],
-},
+  },
+  devServer: {
+      historyApiFallback: true,
+  },
 };
 
 module.exports = () => {

@@ -6,11 +6,15 @@ const Gallery = () => {
   const home = useSelector((store) => store.homeReducer.home);
 
   return (
-      <div style={{ maxWidth: '50%' }}>
+      <div style={{
+        display: 'flex', flexDirection: 'column', width: '80%',
+      }}>
         {home.photos.map((photo, i) => (
-          <ul key={i}>
-            <img src={photo.url} style={{ maxWidth: '100%' }} />
-          </ul>
+          // <ul key={i}>\
+            <img src={photo.url} key={i} style={{
+              marginBottom: '4px', marginLeft: '3rem',
+            }} />
+          // </ul>
         ))}
       </div>
   );

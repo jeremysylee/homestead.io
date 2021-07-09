@@ -2,6 +2,16 @@ const db = require('../../database/index');
 
 module.exports = {
 
+  login: (callback, credentials) => {
+    const queryString = `SELECT * FROM users WHERE username = '${credentials.username}'`;
+    db.query(queryString, (err, res) => {
+      if (err) { callback(err); }
+      const data = res.rows[0] || {};
+      const shapedData = { userToken: data.token, userId: data.id };
+      callback(null, shapedData);
+    });
+  },
+
   fetchCurrentBid: (callback, homeId) => {
     const queryString = `SELECT * FROM bids WHERE home_id = '${homeId}' ORDER BY max_bid DESC`;
     db.query(queryString, (err, res) => {
@@ -21,10 +31,36 @@ module.exports = {
   },
 
   getBids: (callback, homeId) => {
-    const queryString = `SELECT * FROM bids WHERE home_id = ${homeId} ORDER BY max_bid DESC`;
+    const queryString = `SELECT * FROM bids WHERE home_id = ${homeId} ORDER BY max_bid DESC OFFSET 1`;
     db.query(queryString, (err, res) => {
       if (err) { callback(err); }
       callback(null, res.rows);
+    });
+  },
+
+  bid: (callback, homeId, userId, bid) => {
+    const queryString = `INSERT INTO bids VALUES (default, '${homeId}', ${bid}, ${userId})
+      ON CONFLICT (user_id)
+      DO UPDATE SET max_bid = ${bid}`;
+    db.query(queryString, (err) => {
+      if (err) { callback(err); }
+      callback(null);
+    });
+  },
+
+  checkForWin: (callback, homeId, userId) => {
+    const queryString = [`SELECT * FROM bids WHERE home_id = ${homeId} ORDER BY max_bid DESC`, `SELECT * FROM bids WHERE user_id = '${userId}'`];
+    db.query(queryString.join(';'), (err, res) => {
+      if (err) { callback(err); }
+      const data0 = res[0].rows[0] || { user_id: 0 };
+      const data1 = res[1].rows[0] || { id: false };
+      if (data0.user_id.toString() === userId) {
+        callback(null, { status: true, bid: data0.max_bid });
+      } else if (!data1.id) {
+        callback(null, { status: 'noBid', bid: undefined });
+      } else {
+        callback(null, { status: false, bid: data1.max_bid });
+      }
     });
   },
 };

@@ -1,4 +1,4 @@
-const initialState = { currentBid: 0 };
+const initialState = { currentBid: '' };
 
 const currentBidReducer = (state = initialState, action) => {
   switch (action.type) {
